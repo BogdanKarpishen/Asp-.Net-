@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Гостевая";
+}
+@model List<Task1.Models.Review>
+
+<div class="row">
+    <div class="container d-flex justify-content-center" style="width:80%">
+        <div class="container">
+            <h2>Отзывы:</h2>
+            <div class="card-rows">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+
+                        <div class="card">
+
+                            <div class="card-body">
+                                <h2 class="card-title">@item.userName</h2>
+                                <h4 class="card-title">@item.creationTime</h4>
+                                <p class="card-text">@item.review</p>
+                            </div>
+                        </div>
+
+                    }
+                }
+            </div><br />
+
+            <div class="form-group ">
+                @using (Html.BeginForm("Guest", "Home", FormMethod.Post))
+                {
+                    <label for="review">Имя</label> <br />
+                    <input type="text" name="userName" placeholder="YourName" value="" /> <br />
+                    <label for="date">Дата создания</label><br />
+                    <input type="date" name="creationDate" id="date" value="@DateTime.Now" /> <br />
+                    <label for="review">Ваш отзыв</label><br />
+                    <textarea class="form-control" name="review" id="review" rows="3" value="Some Text"></textarea> <br />
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                }
+
+            </div>
+            <br />
+
+
+        </div>
+    </div>
+    <div style="width:20%">@Html.Partial("Menu")</div>
+</div>

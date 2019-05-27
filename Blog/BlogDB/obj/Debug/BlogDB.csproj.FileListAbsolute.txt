@@ -1,0 +1,12 @@
+C:\Users\Богдан\Desktop\Task1\BlogDB\bin\Debug\BlogDB.dll.config
+C:\Users\Богдан\Desktop\Task1\BlogDB\bin\Debug\BlogDB.dll
+C:\Users\Богдан\Desktop\Task1\BlogDB\bin\Debug\BlogDB.pdb
+C:\Users\Богдан\Desktop\Task1\BlogDB\bin\Debug\EntityFramework.dll
+C:\Users\Богдан\Desktop\Task1\BlogDB\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Богдан\Desktop\Task1\BlogDB\bin\Debug\EntityFramework.xml
+C:\Users\Богдан\Desktop\Task1\BlogDB\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Богдан\Desktop\Task1\BlogDB\obj\Debug\BlogDB.csprojAssemblyReference.cache
+C:\Users\Богдан\Desktop\Task1\BlogDB\obj\Debug\BlogDB.csproj.CoreCompileInputs.cache
+C:\Users\Богдан\Desktop\Task1\BlogDB\obj\Debug\BlogDB.csproj.CopyComplete
+C:\Users\Богдан\Desktop\Task1\BlogDB\obj\Debug\BlogDB.dll
+C:\Users\Богдан\Desktop\Task1\BlogDB\obj\Debug\BlogDB.pdb
