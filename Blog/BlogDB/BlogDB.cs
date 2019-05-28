@@ -15,9 +15,9 @@ namespace BlogDatabase
             :base("BlogDbContext")
         { }
 
-        public IDbSet<Articles> Articles { get; set; }
-        public IDbSet<Comments> Comments { get; set; }
-        public IDbSet<Forms> Forms { get; set; }
+        public DbSet<Articles> Articles { get; set; }
+        public DbSet<Comments> Comments { get; set; }
+        public DbSet<Forms> Forms { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -38,39 +38,55 @@ namespace BlogDatabase
                 //TODO тестовые данные
                 #region
                 new Articles {
-                    "Test hteme 1",
-                    "Test name 1",
-                    "Me and You",
-                    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae," +
+                    Theme = "Test theme 1",
+                    Name = "Test name 1",
+                    Creator = "Me and You",
+                    Date = DateTime.UtcNow,
+                    Text = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae," +
                     " blanditiis eum, reprehenderit ex maxime perferendis nostrum debitis" +
                     " corrupti labore, repellendus incidunt aliquid atque. Neque exercitationem" +
                     " nostrum alias harum vel dolorem?Optio dolor reiciendis quam repellendus maxime" +
                     " soluta dolore magni alias quaerat animi provident aspernatur possimus, perferendis autem deleniti molestias voluptates laudantium perspiciatis libero natus. Vel soluta voluptatum est necessitatibus dicta?"
                     },
-                new Articles(
-                    "Test hteme 1",
-                    "Test name 2",
-                    "Only You",
-                    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae," +
+                new Articles{
+                    Theme = "Test theme 1",
+                    Name = "Test name 2",
+                    Creator = "Only You",
+                    Date = DateTime.UtcNow,
+                    Text = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae," +
                     " blanditiis eum, reprehenderit ex maxime perferendis nostrum debitis" +
                     " corrupti labore, repellendus incidunt aliquid atque. Neque exercitationem" +
                     " nostrum alias harum vel dolorem?Optio dolor reiciendis quam repellendus maxime" +
                     " soluta dolore magni alias quaerat animi provident aspernatur possimus, perferendis autem deleniti molestias voluptates laudantium perspiciatis libero natus. Vel soluta voluptatum est necessitatibus dicta?"
-                    ),
-                new Articles(
-                    "Test hteme 2",
-                    "Test name 3",
-                    "Only Me",
-                    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae," +
+                            },
+                new Articles{
+                    Theme = "Test hteme 2",
+                    Name = "Test name 3",
+                    Creator = "Only Me",
+                    Date = DateTime.UtcNow,
+                    Text = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae," +
                     " blanditiis eum, reprehenderit ex maxime perferendis nostrum debitis" +
                     " corrupti labore, repellendus incidunt aliquid atque. Neque exercitationem" +
                     " nostrum alias harum vel dolorem?Optio dolor reiciendis quam repellendus maxime" +
                     " soluta dolore magni alias quaerat animi provident aspernatur possimus, perferendis autem deleniti molestias voluptates laudantium perspiciatis libero natus. Vel soluta voluptatum est necessitatibus dicta?"
-                    )
+                        }
                 #endregion
             };
+            var form = new List<Forms>
+            {
+                new Forms
+                {
+                    FirstName = "Test",
+                    SecondName = "Test",
+                    City = "Test",
+                    SecretName = new string[]{"Test" },
+                    Weapons = new string[]{"Test" }
+                }
 
+        };
+            form.ForEach(std => context.Forms.Add(std));
             articles.ForEach(std => context.Articles.Add(std));
+            
             context.SaveChanges();
         }
     }

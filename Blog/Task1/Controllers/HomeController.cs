@@ -8,34 +8,31 @@ using BlogDatabase;
 
 namespace Task1.Controllers
 {
-    /*TODO список отзывов
-     добавить для классов работающих с базой IDisposable*/
     public class HomeController : Controller
     {
-        static List<Review> reviews = new List<Review>();
+
         public ActionResult Index()
         {
-                BlogDBContext blogDbContext = new BlogDBContext();
+            DbOperations<Articles> operations = new DbOperations<Articles>();
 
-                List<Article> articles = new List<Article>();
-                blogDbContext.Articles.Select(m => m.Id);
-            /* foreach (var item in blogDB.Articles)
-             {
 
-             }*/
-            ViewBag.Message = blogDbContext.Articles.Count();
-            return View();
+            return View(operations.SelectAll());
         }
 
-        public ActionResult Guest(string userName,string creationDate,string review)
+        public ActionResult Guest(string userName,Nullable<DateTime> creationDate,string review)
         {
             if (Request.HttpMethod == "GET")
             {
                 return View();
             }
             else
-            reviews.Add(new Review(userName, creationDate, review));
-            return View((object)reviews);
+            {
+            DbOperations<Comments> operations = new DbOperations<Comments>();
+            operations.Add(new Comments(userName,creationDate.Value,review));
+            
+            return View(operations.SelectAll());
+            }
+            
         }
         public ActionResult Form(FormCollection form)
         {
@@ -45,22 +42,52 @@ namespace Task1.Controllers
 
             if (Request.HttpMethod == "POST")
             {
-                Task1.Models.Form result =
-                     new Form(string.Join("", form.GetValues(0)),
+                DbOperations<Forms> operations = new DbOperations<Forms>();
+                operations.Edit(new Forms(string.Join("", form.GetValues(0)),
                      string.Join("", form.GetValues(1)),
                      string.Join("", form.GetValues(2)),
                      form.GetValues(3),
-                     form.GetValues(4));
-                
-                return View(result);
+                     form.GetValues(4)));
+
+                return View(operations.SelectAll().First());
             }
 
             else
                 
                 return View();
         }
+        [HttpPost]
+        public ActionResult CreateNewArticle(Articles articles)
+        {
+            DbOperations<Articles> operations = new DbOperations<Articles>();
 
+            operations.Add(articles);
+            return RedirectToAction("Index");
+        }
 
+        [HttpGet]
+        public ActionResult CreateNewArticle()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult EditArticle(int id)
+        {
+            DbOperations<Articles> operations = new DbOperations<Articles>();
+            return View(operations.SelectAll().Find(m =>m.Id == id));
+        }
+        [HttpPost]
+        public ActionResult EditArticle(Articles articles)
+        {
+
+            return RedirectToAction("Index");
+        }
+        public ActionResult DeleteArticle(int id)
+        {
+            DbOperations<Articles> operations = new DbOperations<Articles>();
+            operations.Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 
 }

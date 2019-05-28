@@ -17,5 +17,17 @@ namespace BlogDatabase
 
         public virtual ICollection<Comments> Comments { get; set; }
 
+        public Articles():base()
+        {
+        }
+
+        public Articles(string theme, string name, string creator, DateTime dateTime, string text)
+        {
+            this.Theme = theme;
+            this.Name = name;
+            this.Creator = creator;
+            this.Date = dateTime;
+            this.Text = text;
+        }
     }
 }

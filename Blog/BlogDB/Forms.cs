@@ -13,5 +13,18 @@ namespace BlogDatabase
         public string City { get; set; }
         public string[] SecretName { get; set; }
         public string[] Weapons { get; set; }
+
+        public Forms():base()
+        { }
+
+        public Forms(string firstName, string secondName, string city, string[] secretName, string[] weapons)
+        {
+            this.FirstName = firstName;
+            this.SecondName = secondName;
+            this.City = city;
+            this.SecretName = secretName;
+            this.Weapons = weapons;
+
+        }
     }
 }

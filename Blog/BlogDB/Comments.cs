@@ -9,10 +9,19 @@ namespace BlogDatabase
     public class Comments : BaseEntity
     {
         public string Name { get; set; }
-        public string Creator { get; set; }
-
-        public string Text { get; set; }
+        public DateTime CreationDate { get; set; }
+        public string Review { get; set; }
 
         public virtual Articles Article { get;set; }
+
+        public Comments() : base()
+        { }
+
+        public Comments(string userName, DateTime creationTime, string review)
+        {
+            this.Name = userName;
+            this.CreationDate = creationTime;
+            this.Review = review;
+        }
     }
 }

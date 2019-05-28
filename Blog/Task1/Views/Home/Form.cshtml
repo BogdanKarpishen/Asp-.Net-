@@ -1,7 +1,8 @@
 ﻿@{
 ViewBag.Title = "Анкета";
 }
-@model Task1.Models.Form
+@model BlogDatabase.Forms
+
 @helper CreateRadioCheck(string[] result, string[] items)
 {
 bool flag = (ViewBag.secretNames as string[]).Contains(result[0]);
@@ -76,12 +77,12 @@ bool flag = (ViewBag.secretNames as string[]).Contains(result[0]);
         {
             <div class="container text-center mr-5">
                 <h2>Результаты:</h2>
-                <p><span>Имя: @Model.firstName</span></p><br />
-                <p><span>Фамилия: @Model.secondName</span></p><br />
-                <p><span>Родной город: @Model.city</span></p><br />
+                <p><span>Имя: @Model.FirstName</span></p><br />
+                <p><span>Фамилия: @Model.SecondName</span></p><br />
+                <p><span>Родной город: @Model.City</span></p><br />
 
-                    @CreateRadioCheck(Model.secretName, ViewBag.secretNames)<br />
-                    @CreateRadioCheck(Model.weapons, ViewBag.pictures)
+                    @CreateRadioCheck(Model.SecretName, ViewBag.secretNames)<br />
+                    @CreateRadioCheck(Model.Weapons, ViewBag.pictures)
 
             </div>
         }

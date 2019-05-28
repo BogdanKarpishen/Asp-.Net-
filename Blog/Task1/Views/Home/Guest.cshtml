@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Гостевая";
 }
-@model List<Task1.Models.Review>
+@model List<BlogDatabase.Comments>
 
 <div class="row">
     <div class="container d-flex justify-content-center" style="width:80%">
@@ -17,9 +17,9 @@
                         <div class="card">
 
                             <div class="card-body">
-                                <h2 class="card-title">@item.userName</h2>
-                                <h4 class="card-title">@item.creationTime</h4>
-                                <p class="card-text">@item.review</p>
+                                <h2 class="card-title">@item.Name</h2>
+                                <h4 class="card-title">@item.CreationDate</h4>
+                                <p class="card-text">@item.Review</p>
                             </div>
                         </div>
 
@@ -33,7 +33,7 @@
                     <label for="review">Имя</label> <br />
                     <input type="text" name="userName" placeholder="YourName" value="" /> <br />
                     <label for="date">Дата создания</label><br />
-                    <input type="date" name="creationDate" id="date" value="@DateTime.Now" /> <br />
+                    <input type="date" name="creationDate" id="date" value="@DateTime.UtcNow" /> <br />
                     <label for="review">Ваш отзыв</label><br />
                     <textarea class="form-control" name="review" id="review" rows="3" value="Some Text"></textarea> <br />
                     <button type="submit" class="btn btn-primary">Отправить</button>

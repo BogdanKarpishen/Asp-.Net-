@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +44,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BlogDataBase">
@@ -160,9 +162,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Article.cs" />
-    <Compile Include="Models\Form.cs" />
-    <Compile Include="Models\Review.cs" />
+    <Content Include="Models\Article.txt" />
+    <Compile Include="Models\DbOperations.cs" />
+    <Content Include="Models\Form.txt" />
+    <Content Include="Models\Review.txt" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +214,8 @@
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Home\Form.cshtml" />
     <Content Include="Views\Home\Guest.cshtml" />
+    <Content Include="Views\Home\CreateNewArticle.cshtml" />
+    <Content Include="Views\Home\EditArticle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
