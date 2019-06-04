@@ -38,7 +38,7 @@ namespace BlogDatabase
                 //TODO тестовые данные
                 #region
                 new Articles {
-                    Theme = "Test theme 1",
+                    
                     Name = "Test name 1",
                     Creator = "Me and You",
                     Date = DateTime.UtcNow,
@@ -46,10 +46,11 @@ namespace BlogDatabase
                     " blanditiis eum, reprehenderit ex maxime perferendis nostrum debitis" +
                     " corrupti labore, repellendus incidunt aliquid atque. Neque exercitationem" +
                     " nostrum alias harum vel dolorem?Optio dolor reiciendis quam repellendus maxime" +
-                    " soluta dolore magni alias quaerat animi provident aspernatur possimus, perferendis autem deleniti molestias voluptates laudantium perspiciatis libero natus. Vel soluta voluptatum est necessitatibus dicta?"
-                    },
+                    " soluta dolore magni alias quaerat animi provident aspernatur possimus, perferendis autem deleniti molestias voluptates laudantium perspiciatis libero natus. Vel soluta voluptatum est necessitatibus dicta?",
+                    Tags = new List<Tag>(){new Tag("Lorem")}
+                },
                 new Articles{
-                    Theme = "Test theme 1",
+                    
                     Name = "Test name 2",
                     Creator = "Only You",
                     Date = DateTime.UtcNow,
@@ -57,10 +58,10 @@ namespace BlogDatabase
                     " blanditiis eum, reprehenderit ex maxime perferendis nostrum debitis" +
                     " corrupti labore, repellendus incidunt aliquid atque. Neque exercitationem" +
                     " nostrum alias harum vel dolorem?Optio dolor reiciendis quam repellendus maxime" +
-                    " soluta dolore magni alias quaerat animi provident aspernatur possimus, perferendis autem deleniti molestias voluptates laudantium perspiciatis libero natus. Vel soluta voluptatum est necessitatibus dicta?"
-                            },
+                    " soluta dolore magni alias quaerat animi provident aspernatur possimus, perferendis autem deleniti molestias voluptates laudantium perspiciatis libero natus. Vel soluta voluptatum est necessitatibus dicta?",
+                    Tags = new List<Tag>(){new Tag("ipsum") }
+                },
                 new Articles{
-                    Theme = "Test hteme 2",
                     Name = "Test name 3",
                     Creator = "Only Me",
                     Date = DateTime.UtcNow,
@@ -68,7 +69,8 @@ namespace BlogDatabase
                     " blanditiis eum, reprehenderit ex maxime perferendis nostrum debitis" +
                     " corrupti labore, repellendus incidunt aliquid atque. Neque exercitationem" +
                     " nostrum alias harum vel dolorem?Optio dolor reiciendis quam repellendus maxime" +
-                    " soluta dolore magni alias quaerat animi provident aspernatur possimus, perferendis autem deleniti molestias voluptates laudantium perspiciatis libero natus. Vel soluta voluptatum est necessitatibus dicta?"
+                    " soluta dolore magni alias quaerat animi provident aspernatur possimus, perferendis autem deleniti molestias voluptates laudantium perspiciatis libero natus. Vel soluta voluptatum est necessitatibus dicta?",
+                    Tags = new List<Tag>(){new Tag("Lorem"),new Tag("ipsum") }
                         }
                 #endregion
             };
@@ -79,8 +81,8 @@ namespace BlogDatabase
                     FirstName = "Test",
                     SecondName = "Test",
                     City = "Test",
-                    SecretName = new string[]{"Test" },
-                    Weapons = new string[]{"Test" }
+                    SecretName = new List<string>(new string[]{"Test" }),
+                    Weapons = new List<string>(new string[]{"Test" })
                 }
 
         };

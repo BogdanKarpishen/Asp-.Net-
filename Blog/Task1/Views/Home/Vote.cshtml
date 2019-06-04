@@ -1,0 +1,22 @@
+﻿@model Task1.Models.Voting
+
+<div class="text-left">
+    <dt class="text-center">
+        @Html.DisplayFor(model => model.VotingName)
+    </dt>
+    @using (Html.BeginForm("Vote", "Home", FormMethod.Post))
+    {
+        for (int i = 0; i < Model.Options.Count; i++)
+        {
+            <dd class="text-Left">
+                @Html.DisplayFor(model => model.Options[i].Option)
+                <input type="radio" name="vote" value="@i" />
+                <p>Votes: @Html.DisplayFor(model => model.Options[i].Vote)</p>
+
+            </dd>
+
+        }
+        <button type="submit" class="btn btn-dark">Vote</button>
+    }
+</div>
+

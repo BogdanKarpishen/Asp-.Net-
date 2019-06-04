@@ -1,69 +1,103 @@
 ﻿@model BlogDatabase.Articles
 
 @{
-    Layout = null;
+    ViewBag.Title = "CreateyyArticle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
-    <div style="width:80%">
-        @using (Html.BeginForm())
+    <div class="d-flex pl-5" style="width:80%">
+        @using (Html.BeginForm("CreateNewArticle", "Home", FormMethod.Post, new { style = "width:80%" }))
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+
+                <div class="col-md-10 input_fields_wrap">
+
+                    @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label " })
+                    
+                </div>
+
+                <br />
                 <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Theme, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Theme, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Creator, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Creator, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Creator, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-
-                        <input type="date" name="Date" value="" />
-                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Создать" class="btn btn-default" />
-                    </div>
+            </div>
+            <div class="container">
+                <button type="button" class="add_field_button btn btn-dark m-2 float-left">Add Tag</button>
+                <button type="button" class="remove_field_button btn btn-dark m-2 float-left">Remove Field</button>
+            </div>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Creator, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Creator, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Creator, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    <input type="date" name="Date" value="@DateTime.UtcNow" />
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Создать" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
         }
+
+
     </div>
     <div style="width:20%">
         @Html.ActionLink("К стартовой странице", "Index")
+        <br />
+
     </div>
 </div>
+
+<script src="~/Scripts/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>
+    var wrapper = $(".input_fields_wrap");
+    var add_button = $(".add_field_button");
+    var remove_button = $(".remove_field_button");
+    var index = 0;
+    $(add_button).click(function (e) {
+        e.preventDefault();
+        $(wrapper).append('<input type="text" name="Tags['+index+'].TagName" class="form-control text-box single-line" value="Test" />');
+        index++;
+        //
+    });
+
+    $(remove_button).click(function (e) {
+        e.preventDefault();
+        var total_fields = wrapper[0].childNodes.length;
+        if (total_fields > 1) {
+
+            wrapper[0].childNodes[total_fields - 1].remove();
+        }
+    });
+</script>

@@ -162,10 +162,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Content Include="Models\Article.txt" />
+    <Compile Include="Models\ArticleViewModel.cs" />
     <Compile Include="Models\DbOperations.cs" />
     <Content Include="Models\Form.txt" />
-    <Content Include="Models\Review.txt" />
+    <Compile Include="Models\CommentsViewModel.cs" />
+    <Compile Include="Models\VotingVariant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +217,8 @@
     <Content Include="Views\Home\Guest.cshtml" />
     <Content Include="Views\Home\CreateNewArticle.cshtml" />
     <Content Include="Views\Home\EditArticle.cshtml" />
+    <Content Include="Views\Home\FullArticleView.cshtml" />
+    <Content Include="Views\Home\Vote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

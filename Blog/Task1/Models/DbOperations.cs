@@ -47,6 +47,7 @@ namespace Task1.Models
             {
                 case "Articles":
                     {
+                        var str = blogDbContext.Articles.ToList() as List<T>;
                         return blogDbContext.Articles.ToList() as List<T>;
                     }
                 case "Comments":
@@ -73,11 +74,17 @@ namespace Task1.Models
                         blogDbContext.Articles.Where(m => m.Id == a.Id).First();
 
                         article.Name = a.Name;
-                        article.Theme = a.Theme;
+                        article.Tags = a.Tags;
                         article.Date = a.Date;
                         article.Creator = a.Creator;
                         article.Text = a.Text;
                         break;
+
+                        /*db.Users.Attach(updatedUser);
+                        var entry = db.Entry(updatedUser);
+                        entry.Property(e => e.Email).IsModified = true;
+                        // other changed properties
+                        db.SaveChanges();*/
                     }
                 case Comments c:
                     {
@@ -110,6 +117,7 @@ namespace Task1.Models
         public void Delete(int id)
         {
             var item = blogDbContext.Articles.Where(m => m.Id == id).First();
+            item.Tags.Clear();
             blogDbContext.Articles.Remove(item);
 
 

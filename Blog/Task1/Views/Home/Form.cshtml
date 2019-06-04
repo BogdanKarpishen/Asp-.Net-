@@ -3,7 +3,7 @@ ViewBag.Title = "Анкета";
 }
 @model BlogDatabase.Forms
 
-@helper CreateRadioCheck(string[] result, string[] items)
+@helper CreateRadioCheck(List<string> result, List<string> items)
 {
 bool flag = (ViewBag.secretNames as string[]).Contains(result[0]);
 <div class="container" >
@@ -11,9 +11,9 @@ bool flag = (ViewBag.secretNames as string[]).Contains(result[0]);
         @Html.Raw((flag)?"Ваше секретное имя":"Ваше оружие")</p><br />
         @Html.Raw((flag) ? "<ul class=\"list-group\">" : "<ol class=\"list-group\">")
 
-        @for (int i = 0; i < result.Length; i++)
+        @for (int i = 0; i < result.Count; i++)
         {
-            for (int j = 0; j < items.Length; j++)
+            for (int j = 0; j < items.Count; j++)
             {
                 if (result[i] == items[j])
                 {
@@ -58,7 +58,7 @@ bool flag = (ViewBag.secretNames as string[]).Contains(result[0]);
                     <label class="form-check-label mt-3"><span class="ml-5">@ViewBag.secretNames[i]</span></label><br />
                 }
                 <label class="form-check-label my-5">Выбери оружие</label><br />
-                for (int i = 1; i <= 3; i++)
+                for (int i = 1; i <= ViewBag.pictures.Length; i++)
                 {
                     <label class="form-check-label mt-5">
                         <img src="~/Content/Pictures/_@(i).svg"

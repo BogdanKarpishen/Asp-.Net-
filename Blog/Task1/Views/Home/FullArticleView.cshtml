@@ -1,0 +1,63 @@
+﻿@model Task1.Models.ArticleViewModel
+
+@{
+    ViewBag.Title = "Статья";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<div class="row">
+    <div style="width:80%">
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Creator)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Creator)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreationDate)
+            </dd>
+
+            <dd>
+               
+                <br />
+                <p style="text-indent:30px"> @Html.DisplayFor(model => model.Text)</p>
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Tags)
+            </dt>
+            <dd>
+                <p class="card-text">
+                    @foreach (var tag in Model.Tags)
+                    {<span class="text-info m-5">| @tag.TagName</span>}
+                </p>
+            </dd>
+            <dd>
+                <ul class="nav alert-link">
+                    <li class="nav-item">
+                        @Html.ActionLink("Create New", "CreateNewArticle")
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Edit", "EditArticle", new { id = ViewBag.Id })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Delete", "DeleteArticle", new { id = ViewBag.Id })
+                    </li>
+                </ul>
+            </dd>
+            <dd> Comments:</dd>
+            <dd> Add comments</dd>
+    </div>
+    <div style="width:20%">@Html.Partial("Menu")</div>
+</div>
+    
